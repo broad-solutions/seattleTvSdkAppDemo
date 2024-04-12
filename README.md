@@ -1,0 +1,2 @@
+# seattleTvSdkAppDemo
+是为了方便合作伙伴集成的demo应用
