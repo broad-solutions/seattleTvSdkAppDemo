@@ -30,7 +30,7 @@ build.gradle 文件中：
                     url = uri("https://maven.pkg.github.com/broad-solutions/seattleTvSdk")
                     credentials {
                         username = "xinghunbuxiu"
-                        password = "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"
+                        password = "xxxxxxxxxxx" //github token
                     }
                 }
             }
@@ -44,7 +44,7 @@ build.gradle 文件中：
                     url = uri("https://maven.pkg.github.com/broad-solutions/seattleTvSdk")
                     credentials {
                         username = "xinghunbuxiu"
-                        password = "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"
+                        password = "xxxxxxxxxxx" github token
                     }
                 }
             }
