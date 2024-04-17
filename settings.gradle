@@ -2,14 +2,6 @@ pluginManagement {
     repositories {
         google()
         mavenCentral()
-        maven {
-            url = uri("https://maven.pkg.github.com/broad-solutions/seattleTvSdk")
-            credentials {
-                username = "xinghunbuxiu"
-                password = "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"
-            }
-        }
-
     }
 }
 dependencyResolutionManagement {
@@ -18,11 +10,7 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
         maven {
-            url = uri("https://maven.pkg.github.com/broad-solutions/seattleTvSdk")
-            credentials {
-                username = "xinghunbuxiu"
-                password = "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"
-            }
+            url = uri("https://github.com/broad-solutions/seattleTvSdk/raw/main")
         }
 
     }

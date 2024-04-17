@@ -27,12 +27,8 @@ build.gradle 文件中：
                 google()
                 mavenCentral()
                 maven {
-                    url = uri("https://maven.pkg.github.com/broad-solutions/seattleTvSdk")
-                    credentials {
-                        username = "xinghunbuxiu"
-                        password = "xxxxxxxxxxx" //github token
-                    }
-                }
+                 url = uri("https://github.com/broad-solutions/seattleTvSdk/raw/main")
+               }
             }
         }
         dependencyResolutionManagement {
@@ -40,13 +36,9 @@ build.gradle 文件中：
             repositories {
                 google()
                 mavenCentral()
-                maven {
-                    url = uri("https://maven.pkg.github.com/broad-solutions/seattleTvSdk")
-                    credentials {
-                        username = "xinghunbuxiu"
-                        password = "xxxxxxxxxxx" github token
-                    }
-                }
+                maven maven {
+                 url = uri("https://github.com/broad-solutions/seattleTvSdk/raw/main")
+              }
             }
         }
 
@@ -76,7 +68,6 @@ build.gradle 文件中：
 - 开屏广告：视频广告，适用于App启动时，在Spash里展现广告内容，此时不需要传入视频链接。
 - Banner广告：视频广告，适用于APP进入主界面后，可以在任何位置显示广告，此时不需要传入视频链接。
 - 组合广告：视频广告，适用于APP进入主界面后，一般支持视频播放过程中的前、中和后贴广告，所以此时必须传入视频链接，一般适用于播放影视作品时。
-
 
 ### 4.1 开屏广告
 
