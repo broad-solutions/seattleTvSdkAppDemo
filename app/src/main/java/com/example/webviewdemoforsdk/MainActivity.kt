@@ -6,16 +6,12 @@ import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.KeyEvent
-import android.view.Menu
-import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.example.seattle_tv_sdk.TvAdSdk
 import com.example.webviewdemoforsdk.databinding.ActivityMainBinding
-import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlin.system.exitProcess
 
 class MainActivity : AppCompatActivity() {
@@ -32,9 +28,9 @@ class MainActivity : AppCompatActivity() {
 
         fragmentList = ArrayList()
         // 添加您的 Fragment 到 fragmentList 中
-        fragmentList.add(Video())
-        fragmentList.add(Image())
-        fragmentList.add(Smaato())
+        fragmentList.add(Video.newInstance())
+        fragmentList.add(Image.newInstance())
+        fragmentList.add(Smaato.newInstance())
         // 默认填充第一个 Fragment 到指定容器内
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
@@ -129,7 +125,7 @@ class MainActivity : AppCompatActivity() {
 
                 KeyEvent.KEYCODE_DPAD_RIGHT -> {
                     runOnUiThread {
-                        // 处理左按键事件
+                        // 处里右边按键事件
                         currentFragmentIndex++
                         switchFragment()
                     }
@@ -147,7 +143,6 @@ class MainActivity : AppCompatActivity() {
             currentFragmentIndex = fragmentList.size - 1
         }
         Log.d("FragmentSwitch", "Switching to fragment at index: $currentFragmentIndex")
-        TvAdSdk.releasePlayer()
         supportFragmentManager.beginTransaction()
             .replace(R.id.videoContentMain, fragmentList[currentFragmentIndex])
             .commit()
@@ -175,23 +170,9 @@ class MainActivity : AppCompatActivity() {
             binding.indicatorLayout.addView(indicator)
         }
     }
-
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.menu_main, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.action_settings -> true
-            else -> super.onOptionsItemSelected(item)
-        }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        TvAdSdk.releasePlayer()
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finish()
         android.os.Process.killProcess(android.os.Process.myPid())
         exitProcess(0)
     }

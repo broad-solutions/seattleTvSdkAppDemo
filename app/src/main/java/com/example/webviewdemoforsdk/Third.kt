@@ -5,7 +5,8 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.seattle_tv_sdk.TvAdSdk
+import com.cloudinfinitegroup.seattle_tv_sdk.TvAdSdk
+import com.cloudinfinitegroup.seattle_tv_sdk.ui.TvSdkView
 
 class Third : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,7 +18,9 @@ class Third : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        TvAdSdk.setAdType(TvAdSdk.AdType.BANNER)
-        TvAdSdk.sdkStart(this,"https://storage.googleapis.com/gvabox/media/samples/stock.mp4",R.id.testView,GlobalVariables.token,this.packageName)
+        val tvSdkView = findViewById<TvSdkView>(R.id.testView)
+        tvSdkView.startAd(
+            TvAdSdk.AdType.BANNER
+        )
     }
 }

@@ -26,9 +26,9 @@ class Slider : AppCompatActivity() {
         }
         fragmentList = ArrayList()
         // 添加您的 Fragment 到 fragmentList 中
-        fragmentList.add(Video())
-        fragmentList.add(Image())
-        fragmentList.add(Smaato())
+        fragmentList.add(Video.newInstance())
+        fragmentList.add(Image.newInstance())
+        fragmentList.add(Smaato.newInstance())
         // 默认填充第一个 Fragment 到指定容器内
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()

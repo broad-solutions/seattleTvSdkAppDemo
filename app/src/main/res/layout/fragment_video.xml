@@ -6,9 +6,9 @@
     android:layout_height="match_parent"
     tools:context=".Video">
 
-    <RelativeLayout
+    <com.cloudinfinitegroup.seattle_tv_sdk.ui.TvSdkView
+        android:id="@+id/tv_sdk_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent" />
 
-    </RelativeLayout>
 </FrameLayout>

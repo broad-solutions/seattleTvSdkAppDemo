@@ -6,10 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".Smaato">
 
-    <RelativeLayout
-        android:id="@+id/smaato_container"
+    <com.cloudinfinitegroup.seattle_tv_sdk.ui.TvSdkView
+        android:id="@+id/tvSdkView"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    </RelativeLayout>
+    </com.cloudinfinitegroup.seattle_tv_sdk.ui.TvSdkView>
 </FrameLayout>

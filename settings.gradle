@@ -12,7 +12,11 @@ dependencyResolutionManagement {
         maven {
             url = uri("https://github.com/broad-solutions/seattleTvSdk/raw/main")
         }
-
+//        print("../${rootDir}/seattleTvSdkInternal/local/seattleTvSdk")
+//        // 配置 Maven 本地仓库地址
+//        maven {
+//            url = uri("../seattleTvSdkInternal/local/seattleTvSdk")
+//        }
     }
 }
 rootProject.name = "seattleTvSdkAppDemo"
