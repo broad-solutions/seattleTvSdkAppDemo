@@ -1,5 +1,5 @@
 #seattleTvSdk 广告SDK 对接文档
-欢迎使用Broad Solutions开发的广告SDK！本文档将指导您如何在您的应用程序中集成SeattleSdk的广告功能。
+欢迎使用Cloud Infinitegroup开发的广告SDK！本文档将指导您如何在您的应用程序中集成SeattleSdk的广告功能。
 
 ## 1. 概述
 
@@ -19,8 +19,7 @@ build.gradle 文件中：
              implementation 'com.cloudinfinitegroup:seattle_tv_sdk:1.0'
     }
 
-配置一下maven，此处需要将username和password改成你自己在github上的账号的账号和github token。
-
+maven配置:
     项目根目录下settings.gradle 配置 maven
      pluginManagement {
             repositories {
@@ -71,7 +70,7 @@ android:layout_height="match_parent"/>
             repeatMode: Int = RepeatMode.REPEAT_MODE_OFF,
             listener: AdListener? = null
         )
-		以下方式控制不了广告
+	
       fun pauseAd() {
        暂停播放
     }
