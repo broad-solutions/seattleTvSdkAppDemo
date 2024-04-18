@@ -28,7 +28,7 @@ class Video : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         mBinding?.tvSdkView?.startAd(
             TvAdSdk.AdType.BANNER,
-            repeatMode = RepeatMode.REPEAT_MODE_ON,
+            "https://storage.googleapis.com/gvabox/media/samples/stock.mp4"
         )
     }
 
