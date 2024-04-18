@@ -16,53 +16,54 @@ SeattleSdk广告SDK提供了简单而强大的方式在您OTT盒子的应用程�
 build.gradle 文件中：
 
     dependencies {
-             implementation 'com.cloudinfinitegroup:seattle_tv_sdk:1.0'
+        implementation 'com.cloudinfinitegroup:seattle_tv_sdk:1.0'
     }
 
-maven配置:
-    项目根目录下settings.gradle 配置 maven
-    ...
-     pluginManagement {
-            repositories {
-                google()
-                mavenCentral()
-            }
-        }
-        dependencyResolutionManagement {
-            repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-            repositories {
-                google()
-                mavenCentral()
-                maven maven {
-                 url = uri("https://github.com/broad-solutions/seattleTvSdk/raw/main")
+maven配置: 项目根目录下settings.gradle
+
+    pluginManagement {
+         repositories {
+            google()
+            mavenCentral()
+         }
+    }
+    dependencyResolutionManagement {
+         repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+              repositories {
+                  google()
+                  mavenCentral()
+                  maven {
+                      url = uri("https://github.com/broad-solutions/seattleTvSdk/raw/main")
+                  }
               }
-            }
-        }
-   ...
+    }
 ## 3. 初始化 SDK
 
 在您的应用程序中的合适位置初始化SeattleSdk广告SDK。
 
 - 在使用SDK前，请让贵司的商务先向我们商务代表申请client_id,client_secret。
 - 获取TOKEN的方法如下：
-  TvAdSdk.getAuthorized(client_id, client_secret){ result->
-  这里自己解析 取access_token 为token 然后 初始化sdk
-  token:刚解析的 token
-  packageName 当前的包名
-  TvAdSdk.init(token, packageName)
-  }
-  以下是 返回的对象
-  {
-  access_token: String,
-  token_type: String,
-  expires_in: Int
-  }
+
+      TvAdSdk.getAuthorized(client_id, client_secret){ result->
+           这里自己解析 取access_token 为token 然后 初始化sdk
+           token:刚解析的 token
+           packageName 当前的包名
+         TvAdSdk.init(token, packageName)
+      }
+      以下是 返回的对象
+      {
+        access_token: String,
+        token_type: String,
+        expires_in: Int
+      }
 
 ##4. 添加布局 TvSdkView
-<com.cloudinfinitegroup.seattle_tv_sdk.ui.TvSdkView
-android:id="@+id/tvSdkView"
-android:layout_width="match_parent"
-android:layout_height="match_parent"/>
+
+    <com.cloudinfinitegroup.seattle_tv_sdk.ui.TvSdkView
+       android:id="@+id/tvSdkView"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"/>
+       
 ### TvSdkView 方法说明
 
      fun startAd(
@@ -72,7 +73,7 @@ android:layout_height="match_parent"/>
             listener: AdListener? = null
         )
 	
-      fun pauseAd() {
+    fun pauseAd() {
        暂停播放
     }
 
@@ -87,13 +88,13 @@ android:layout_height="match_parent"/>
     fun setPlayersMuted(muted: Boolean) {
         播放器静音
     }
-		  adType:
-		  TvAdSdk.AdType.SPLASH 开屏广告
-		  TvAdSdk.AdType.SECTION 组合广告
-		  TvAdSdk.AdType.BANNER Banner广告
-		  contentUrl : 视频链接
-		  repeatMode:播放模式暂时不需要
-		  listener:播放监听
+    adType:
+         TvAdSdk.AdType.SPLASH 开屏广告
+	    TvAdSdk.AdType.SECTION 组合广告
+	    TvAdSdk.AdType.BANNER Banner广告
+    contentUrl : 视频链接
+    repeatMode:播放模式暂时不需要
+    listener:播放监听
 
 
 ## 5. 广告类型和用途说明
