@@ -21,6 +21,7 @@ build.gradle 文件中：
 
 maven配置:
     项目根目录下settings.gradle 配置 maven
+    ...
      pluginManagement {
             repositories {
                 google()
@@ -37,7 +38,7 @@ maven配置:
               }
             }
         }
-
+   ...
 ## 3. 初始化 SDK
 
 在您的应用程序中的合适位置初始化SeattleSdk广告SDK。
