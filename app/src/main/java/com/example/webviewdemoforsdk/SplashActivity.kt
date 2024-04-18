@@ -2,12 +2,18 @@ package com.example.webviewdemoforsdk
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.enableEdgeToEdge
+import androidx.annotation.OptIn
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.get
+import androidx.media3.common.util.UnstableApi
 import com.cloudinfinitegroup.seattle_tv_sdk.DefaultAdListener
 import com.cloudinfinitegroup.seattle_tv_sdk.TvAdSdk
 import com.example.webviewdemoforsdk.databinding.ActivitySplashBinding
+import com.google.ads.interactivemedia.v3.api.AdEvent
 import com.google.gson.Gson
+import javax.security.auth.login.LoginException
 
 class SplashActivity : AppCompatActivity() {
     private val mBinding: ActivitySplashBinding by lazy(mode = LazyThreadSafetyMode.NONE) {
@@ -30,10 +36,16 @@ class SplashActivity : AppCompatActivity() {
             val accessTokenResponse = Gson().fromJson(it, Datautils::class.java)
             val tokenRequest = accessTokenResponse.access_token
             GlobalVariables.token = tokenRequest
-            TvAdSdk.init(tokenRequest, packageName)
+            TvAdSdk.init(tokenRequest, packageName, true)
             mBinding.tvSdkView.startAd(
                 TvAdSdk.AdType.SPLASH,
                 listener = object : DefaultAdListener() {
+
+                    override fun onAdPaused() {
+                        super.onAdPaused()
+                        goToMain()
+                    }
+
                     override fun onSkip() {
                         goToMain()
                     }

@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.cloudinfinitegroup.seattle_tv_sdk.RepeatMode
 import com.cloudinfinitegroup.seattle_tv_sdk.TvAdSdk
 import com.example.webviewdemoforsdk.databinding.FragmentVideoBinding
 
@@ -27,7 +28,7 @@ class Video : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         mBinding?.tvSdkView?.startAd(
             TvAdSdk.AdType.BANNER,
-            "https://storage.googleapis.com/gvabox/media/samples/stock.mp4"
+            repeatMode = RepeatMode.REPEAT_MODE_ON,
         )
     }
 
