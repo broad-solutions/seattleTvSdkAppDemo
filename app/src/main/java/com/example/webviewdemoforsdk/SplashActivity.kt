@@ -4,6 +4,7 @@ import android.content.Intent
 import android.content.res.Resources
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.annotation.OptIn
 import androidx.appcompat.app.AppCompatActivity
@@ -35,57 +36,45 @@ class SplashActivity : AppCompatActivity() {
             if (it.isNullOrEmpty()) {
                 return@getAuthorized
             }
-            val accessTokenResponse = Gson().fromJson(it, Datautils::class.java)
-            val tokenRequest = accessTokenResponse.access_token
-            GlobalVariables.token = tokenRequest
-            TvAdSdk.init(this, tokenRequest, packageName, true) { result ->
-                result.adapterStatusMap.forEach {
-                    Log.d("TAG", "onCreate: ${it.key}")
-                    Log.d("TAG", "onCreate: ${it.value}")
-                }
-                val width = Resources.getSystem().displayMetrics.heightPixels
-                val size: AdSize =
-                    AdSize.getLandscapeInlineAdaptiveBannerAdSize(this@SplashActivity, width)
-                Log.e("splash", "width:$width,size:$size")
-                mBinding.mobileSdk.loadAd {
-                    adUnitId = "/6499/example/banner"  //固定式横幅
-//                    adUnitId = "/6499/example/interstitial" 插槽
-//                    adUnitId = "/6499/example/app-open"
-                    adType = TvAdSdk.MobilAdType.BANNER
-                    openAd = {
-                        it?.show(this@SplashActivity)
-                    }
+            Gson().runCatching {
+                val accessTokenResponse = fromJson(it, Datautils::class.java)
+                val tokenRequest = accessTokenResponse.access_token
+                GlobalVariables.token = tokenRequest
+                TvAdSdk.init(this@SplashActivity, tokenRequest, packageName, true) { result ->
+
+                    mBinding.tvSdkView.startAd(
+                        TvAdSdk.AdType.SPLASH,
+                        listener = object : DefaultAdListener() {
+
+                            override fun onAdPaused() {
+                                super.onAdPaused()
+                                goToMain()
+                            }
+
+                            override fun onSkip() {
+                                goToMain()
+                            }
+
+                            override fun onAdCompleted() {
+                                goToMain()
+                            }
+
+                            override fun onAdFailedToLoad(errorMessage: String) {
+                                goToMain()
+                            }
+
+                            override fun onAdIsEmpty(errorMessage: String) {
+                                goToMain()
+                            }
+
+                        })
                 }
 
+            }.onFailure {
+                Toast.makeText(this@SplashActivity, it.message, Toast.LENGTH_LONG).show()
+                goToMain()
             }
 
-//            mBinding.tvSdkView.startAd(
-//                TvAdSdk.AdType.SPLASH,
-//                listener = object : DefaultAdListener() {
-//
-//                    override fun onAdPaused() {
-//                        super.onAdPaused()
-//                        goToMain()
-//                    }
-//
-//                    override fun onSkip() {
-//                        goToMain()
-//                    }
-//
-//                    override fun onAdCompleted() {
-//                        goToMain()
-//                    }
-//
-//                    override fun onAdFailedToLoad(errorMessage: String) {
-//                        goToMain()
-//                    }
-//
-//                    override fun onAdIsEmpty(errorMessage: String) {
-//                        goToMain()
-//                    }
-//
-//                }
-//            )
         }
     }
 

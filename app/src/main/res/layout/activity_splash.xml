@@ -17,12 +17,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.cloudinfinitegroup.seattle_tv_sdk.ui.TvMobileAdView
-        android:id="@+id/mobileSdk"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="#ff3148"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -45,4 +45,6 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation(platform("org.jetbrains.kotlin:kotlin-bom:1.8.22"))
     implementation 'com.cloudinfinitegroup:seattle_tv_sdk:1.1'
+    //图片 加载 coil
+    implementation 'io.coil-kt:coil:2.4.0' // 目前最新是2.4.0
 }

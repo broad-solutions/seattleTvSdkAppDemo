@@ -20,6 +20,7 @@
 
     <application
         android:allowBackup="true"
+        android:banner="@mipmap/logo_banner"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/logo_tv"
@@ -28,24 +29,21 @@
         android:supportsRtl="true"
         android:theme="@style/FullScreenTheme"
         android:usesCleartextTraffic="true"
-        tools:targetApi="31"
-        android:banner="@mipmap/logo_banner">
-        <activity
-            android:name=".Slider"
-            android:exported="false"
-            />
+        tools:targetApi="31">
+
         <activity
             android:name=".SplashActivity"
-            android:theme="@style/FullScreenTheme"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/FullScreenTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
                 <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".Third"
+            android:name=".AdActivity"
             android:exported="false" />
         <!--
             Adding this meta data is required as of Google Mobile Ads SDK version 17.0.0 as explained in
@@ -65,17 +63,7 @@
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:theme="@style/Theme.WebViewDemo.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-                <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
-            </intent-filter>
-
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
+            android:theme="@style/Theme.WebViewDemo.NoActionBar" />
     </application>
 
 </manifest>

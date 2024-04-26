@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:focus="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.example.webviewdemoforsdk.view.FocusFrameLayout
+        android:id="@+id/fl_ad"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        focus:focusStrokeColor="@color/white"
+        android:nextFocusDown="@id/adView"
+        focus:focusStrokeWidth="2">
+
+        <ImageView
+            android:id="@+id/img_bg"
+            android:layout_width="match_parent"
+            android:focusable="false"
+            android:layout_height="match_parent" />
+    </com.example.webviewdemoforsdk.view.FocusFrameLayout>
+
+    <com.cloudinfinitegroup.seattle_tv_sdk.ui.TvMobileAdView
+        android:id="@+id/adView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:descendantFocusability="afterDescendants"
+        android:focusable="true"
+        android:layout_gravity="bottom"
+        android:nextFocusUp="@+id/fl_ad"
+        android:focusableInTouchMode="true" />
+</FrameLayout>
