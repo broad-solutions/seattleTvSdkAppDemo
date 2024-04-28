@@ -14,10 +14,16 @@ data class Datautils(
     val jti: String
 )
 
+data class Result(
+    val code: Int,
+    val msg: String,
+    val data: String,
+)
+
 
 fun isAndroidTV(context: Context): Boolean {
     val uiModeManager = context.getSystemService(Context.UI_MODE_SERVICE) as UiModeManager
-    val isTv=uiModeManager.currentModeType == Configuration.UI_MODE_TYPE_TELEVISION
+    val isTv = uiModeManager.currentModeType == Configuration.UI_MODE_TYPE_TELEVISION
     "当前是否是电视：$isTv".print("isAndroidTV")
     return isTv
 }
