@@ -2,7 +2,7 @@ package com.example.webviewdemoforsdk
 
 
 import android.os.Bundle
-import android.widget.Toast
+import android.webkit.WebView
 import androidx.appcompat.app.AppCompatActivity
 import com.cloudinfinitegroup.seattle_tv_sdk.TvAdSdk
 import com.cloudinfinitegroup.seattle_tv_sdk.print
@@ -10,7 +10,6 @@ import com.cloudinfinitegroup.seattle_web_sdk.AnalyticsDelegate
 import com.cloudinfinitegroup.seattle_web_sdk.AnalyticsDelegateImpl
 import com.cloudinfinitegroup.seattle_web_sdk.SeattleSdk
 import com.example.webviewdemoforsdk.databinding.ActivityAdBinding
-import com.google.gson.Gson
 
 
 class AdActivity : AppCompatActivity(), AnalyticsDelegate by AnalyticsDelegateImpl() {
@@ -24,9 +23,9 @@ class AdActivity : AppCompatActivity(), AnalyticsDelegate by AnalyticsDelegateIm
         setContentView(binding?.root)
         mySdk = SeattleSdk(this)
         TvAdSdk.setDebug(true)
+        WebView.setWebContentsDebuggingEnabled(true)
         mySdk?.apply {
-            showContent(binding!!.adContainer)
-            initSdk(packageName, TvAdSdk.token!!) {
+            loadAd(binding!!.adContainer) {
                 "initSdk $it".print("initSdk")
             }
         }

@@ -41,8 +41,7 @@ class SplashActivity : AppCompatActivity() {
             Gson().runCatching {
                 val accessTokenResponse = fromJson(it, Datautils::class.java)
                 val tokenRequest = accessTokenResponse.access_token
-                GlobalVariables.token = tokenRequest
-                TvAdSdk.init(this@SplashActivity, tokenRequest, packageName, true) { result ->
+                TvAdSdk.initV2(this@SplashActivity, tokenRequest, packageName) { result ->
 
                     mBinding.tvSdkView.startAd(
                         TvAdSdk.AdType.SPLASH,
