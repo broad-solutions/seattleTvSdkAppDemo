@@ -29,8 +29,8 @@ class SplashActivity : AppCompatActivity() {
         setContentView(mBinding.root)
         //client_id和client_secret需要从sdk提供方获取
         val client_id = "S766494354"
-        val client_secret = "17fadc2e6b084965ab5e690bf4bd8f6c"
-//        val client_secret = "b709ab7f31cf4e21ad7e2c79227112d3"
+//        val client_secret = "17fadc2e6b084965ab5e690bf4bd8f6c"
+        val client_secret = "b709ab7f31cf4e21ad7e2c79227112d3"
         mBinding.tvSdkView.setPlaceHolder(R.drawable.splash)
         mBinding.tvSdkView.setPlayersMuted(true)
         TvAdSdk.setDebug(true)
