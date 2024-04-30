@@ -140,6 +140,7 @@ addAdView(focus)
 class AdActivity : AppCompatActivity(), AnalyticsDelegate by AnalyticsDelegateImpl()
 //让自己的 Activity 实现 AnalyticsDelegate by AnalyticsDelegateImpl()
 val mySdk = SeattleSdk(this)
+调用 loadAd 这个方法函数
 fun loadAd(
 container: ViewGroup,
 category: String = "",//跳转的分类可选
