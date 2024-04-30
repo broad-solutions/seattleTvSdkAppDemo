@@ -138,9 +138,9 @@ class AdActivity : AppCompatActivity(), AnalyticsDelegate by AnalyticsDelegateIm
 val mySdk = SeattleSdk(this)
 fun loadAd(
 container: ViewGroup,
-category: String = "",
-otherParam: String = "",
-callback: (String) -> Unit
+category: String = "",//跳转的分类可选
+otherParam: String = "",//其他参数可选
+callback: (String) -> Unit //初始化回调信息
 )
 
 ## 5. 广告类型和用途说明
