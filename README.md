@@ -37,12 +37,14 @@ maven配置: 项目根目录下settings.gradle
                   }
               }
     }
+
 ## 3. 初始化 SDK
 
 在您的应用程序中的合适位置初始化SeattleSdk广告SDK。
 
 - 在使用SDK前，请让贵司的商务先向我们商务代表申请client_id,client_secret。
 - 获取TOKEN的方法如下：
+
 ```
       TvAdSdk.getAuthorized(client_id, client_secret){ result->
            这里自己解析 取access_token 为token 然后 初始化sdk
@@ -62,7 +64,9 @@ maven配置: 项目根目录下settings.gradle
         expires_in: Int
       }
 ```
+
 ##4. 在合适的布局布局中增加 TvSdkView TvMobileAdView
+
 ```
     <com.cloudinfinitegroup.seattle_tv_sdk.ui.TvSdkView
        android:id="@+id/tvSdkView"
@@ -82,6 +86,7 @@ maven配置: 项目根目录下settings.gradle
         android:focusable="true"
         android:focusableInTouchMode="true" />
 ```
+
 ### TvSdkView 方法说明
 
      fun startAd(
@@ -114,9 +119,8 @@ maven配置: 项目根目录下settings.gradle
     repeatMode:播放模式暂时不需要
     listener:播放监听
 
-
-
 ###TvMobileAdView 使用说明
+
 ```
 loadAd {
 adUnitId = "/6499/example/banner"  //固定式横幅测试ID
@@ -147,6 +151,7 @@ addAdView(imageView)
 ```
 
 ###WebSdk使用说明（1.1新增）
+
 ```
 class AdActivity : AppCompatActivity(), AnalyticsDelegate by AnalyticsDelegateImpl()
 //让自己的 Activity 实现 AnalyticsDelegate by AnalyticsDelegateImpl()
@@ -160,6 +165,7 @@ val mySdk = SeattleSdk(this)
 fun loadAd(
 container: ViewGroup,
 channelId:String,//频道ID
+urlIndex:Int,//后台配有多个链接时可以选择加载第几个索引默认第一个
 category: String = "",//跳转的分类可选
 otherParam: String = "",//其他参数可选
 callback: (String) -> Unit //初始化回调信息

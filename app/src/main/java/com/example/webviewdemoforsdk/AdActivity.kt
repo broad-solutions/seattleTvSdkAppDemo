@@ -25,7 +25,7 @@ class AdActivity : AppCompatActivity(), AnalyticsDelegate by AnalyticsDelegateIm
         TvAdSdk.setDebug(true)
         WebView.setWebContentsDebuggingEnabled(true)
         mySdk?.apply {
-            loadAd(binding!!.adContainer, "seattleTvSdkDemo") { _, msg ->
+            loadAd(binding!!.adContainer, "seattleTvSdkDemo", urlIndex = 0) { _, msg ->
                 "initSdk $msg".print("initSdk")
             }
         }
