@@ -43,7 +43,7 @@ maven配置: 项目根目录下settings.gradle
 
 - 在使用SDK前，请让贵司的商务先向我们商务代表申请client_id,client_secret。
 - 获取TOKEN的方法如下：
-
+```
       TvAdSdk.getAuthorized(client_id, client_secret){ result->
            这里自己解析 取access_token 为token 然后 初始化sdk
            token:刚解析的 token
@@ -61,16 +61,16 @@ maven配置: 项目根目录下settings.gradle
         token_type: String,
         expires_in: Int
       }
-
+```
 ##4. 在合适的布局布局中增加 TvSdkView TvMobileAdView
-
+```
     <com.cloudinfinitegroup.seattle_tv_sdk.ui.TvSdkView
        android:id="@+id/tvSdkView"
        android:layout_width="match_parent"
        android:layout_height="match_parent"/>
 	   
 	   //1.1 增加Mobile Ads  注意 不支持 Android Tv
-	   <com.cloudinfinitegroup.seattle_tv_sdk.ui.TvMobileAdView
+    <com.cloudinfinitegroup.seattle_tv_sdk.ui.TvMobileAdView
         android:id="@+id/mobileSdk"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -81,7 +81,7 @@ maven配置: 项目根目录下settings.gradle
         android:descendantFocusability="afterDescendants"
         android:focusable="true"
         android:focusableInTouchMode="true" />
-
+```
 ### TvSdkView 方法说明
 
      fun startAd(
@@ -117,6 +117,7 @@ maven配置: 项目根目录下settings.gradle
 
 
 ###TvMobileAdView 使用说明
+```
 loadAd {
 adUnitId = "/6499/example/banner"  //固定式横幅测试ID
 //mobile ads 广告类型
@@ -129,19 +130,41 @@ adWarp = {
 it.focus("video横幅")
 }
 }
+
 //可以放入自己的广告
-addAdView(focus)
+  val imageView = ImageView(this@MainActivity)
+  imageView.setImageResource(R.drawable.logo_banner)
+        imageView.layoutParams = ViewGroup.LayoutParams(
+            ViewGroup.LayoutParams.WRAP_CONTENT,
+            40f.dpi
+        )
+        imageView.setOnClickListener {
+            "点击了".print("adView0")
+            val intent = Intent(this@MainActivity, AdActivity::class.java)
+            startActivity(intent)
+        }
+addAdView(imageView)
+```
 
 ###WebSdk使用说明（1.1新增）
+```
 class AdActivity : AppCompatActivity(), AnalyticsDelegate by AnalyticsDelegateImpl()
 //让自己的 Activity 实现 AnalyticsDelegate by AnalyticsDelegateImpl()
+初始化并调用 loadAd 这个方法函数
 val mySdk = SeattleSdk(this)
+ mySdk?.apply {
+        loadAd(binding!!.adContainer, "channelId") { _, msg ->
+                "initSdk $msg".print("initSdk")
+            }
+      }
 fun loadAd(
 container: ViewGroup,
+channelId:String,//频道ID
 category: String = "",//跳转的分类可选
 otherParam: String = "",//其他参数可选
 callback: (String) -> Unit //初始化回调信息
 )
+```
 
 ## 5. 广告类型和用途说明
 
