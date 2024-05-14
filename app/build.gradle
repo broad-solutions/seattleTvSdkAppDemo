@@ -15,15 +15,25 @@ android {
         versionName "1.0"
 
     }
-
+    signingConfigs {
+        config {
+            storeFile file(RELEASE_STORE_FILE)
+            storePassword RELEASE_STORE_PASSWORD
+            keyAlias RELEASE_KEY_ALIAS
+            keyPassword RELEASE_KEY_PASSWORD
+        }
+    }
     buildTypes {
         debug {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
         }
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
+
         }
     }
     compileOptions {
@@ -44,5 +54,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.11.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation(platform("org.jetbrains.kotlin:kotlin-bom:1.8.22"))
-    implementation 'com.cloudinfinitegroup:seattle_tv_sdk:1.0'
+    implementation 'com.cloudinfinitegroup:seattle_tv_sdk:1.1'
+    //图片 加载 coil
+    implementation 'io.coil-kt:coil:2.4.0' // 目前最新是2.4.0
 }

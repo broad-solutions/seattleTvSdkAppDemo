@@ -1,19 +1,22 @@
-package com.example.webviewdemoforsdk
+package com.example.webviewdemoforsdk.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import com.cloudinfinitegroup.seattle_tv_sdk.RepeatMode
-import com.cloudinfinitegroup.seattle_tv_sdk.TvAdSdk
+import com.cloudinfinitegroup.seattle_tv_sdk.print
+import com.example.webviewdemoforsdk.R
 import com.example.webviewdemoforsdk.databinding.FragmentVideoBinding
+import com.example.webviewdemoforsdk.view.attachFocus
 
 
-class Video : Fragment() {
+class Image : FocusFragment() {
 
     private var mBinding: FragmentVideoBinding? = null
-
+    override fun requestFocus() {
+        "viewPaper give me focus".print("Image")
+        mBinding?.tvSdkView?.requestFocus()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,30 +29,15 @@ class Video : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mBinding?.tvSdkView?.startAd(
-            TvAdSdk.AdType.BANNER,
-            "https://storage.googleapis.com/gvabox/media/samples/stock.mp4"
-        )
-    }
+        view.attachFocus("ImageFragment")
 
-    override fun onResume() {
-        super.onResume()
-        mBinding?.tvSdkView?.resumeAd()
-    }
-
-    override fun onPause() {
-        super.onPause()
-        mBinding?.tvSdkView?.pauseAd()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        mBinding?.tvSdkView?.destroyAd()
+        //近图片
+        mBinding?.tvSdkView?.setPlaceHolder(R.drawable.splash)
     }
 
     companion object {
         @JvmStatic
         fun newInstance() =
-            Video()
+            Image()
     }
 }

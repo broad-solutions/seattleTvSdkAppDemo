@@ -1,14 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/fragment_video_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Video">
+    android:descendantFocusability="afterDescendants"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
 
     <com.cloudinfinitegroup.seattle_tv_sdk.ui.TvSdkView
         android:id="@+id/tv_sdk_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:descendantFocusability="afterDescendants"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:nextFocusDown="@+id/mobileSdk" />
+
+    <com.cloudinfinitegroup.seattle_tv_sdk.ui.TvMobileAdView
+        android:id="@+id/mobileSdk"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:nextFocusUp="@+id/tv_sdk_view"
+        android:descendantFocusability="afterDescendants"
+        android:focusable="true"
+        android:focusableInTouchMode="true" />
 
 </FrameLayout>
