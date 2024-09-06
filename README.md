@@ -67,6 +67,7 @@ maven配置: 项目根目录下settings.gradle
 
 ##4. 在合适的布局中增加两种不同类型的View:
 TvSdkView : 这个View是用于展示Video广告
+TvSdkView2 : 这个View是用于展示Video广告,此播放器没有任何控制器。
 TvMobileAdView： 这个是View用于展示Admob的广告(Banner类型)
 
 ```
@@ -76,7 +77,7 @@ TvMobileAdView： 这个是View用于展示Admob的广告(Banner类型)
        android:layout_width="match_parent"
        android:layout_height="match_parent"/>
   
-  // 视频广告TvSdkView 布局 使用系统原生 VideoView
+  // 视频广告TvSdkView2 布局 使用系统原生 VideoView
     <com.cloudinfinitegroup.seattle_tv_sdk.ui.TvSdkView2
        android:id="@+id/tvSdkView"
        android:layout_width="match_parent"
@@ -121,7 +122,9 @@ TvMobileAdView： 这个是View用于展示Admob的广告(Banner类型)
     fun destroyAd() {
       播放器消亡
     }
-
+    fun focusSkipButton(){
+      将焦点转移给广告跳过按钮
+    }
     fun setPlayersMuted(muted: Boolean) {
         播放器静音
     }
