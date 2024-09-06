@@ -28,12 +28,8 @@ class SplashActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(mBinding.root)
         //client_id和client_secret需要从sdk提供方获取
-        val client_id = "S766494354"
-//        val client_id = "S649082492"
-//        val client_id = "S740300465"
-        val client_secret = "b709ab7f31cf4e21ad7e2c79227112d3"
-//        val client_secret = "c6d576a4b62f4ed388b14cfa8b519218"
-//        val client_secret = "abf36202603c414f996770977abab401"
+        val client_id = "S754918136"
+        val client_secret = "4f9de9cfdc4643e89e6d0d26a22828d5"
         mBinding.tvSdkView.setPlaceHolder(R.drawable.splash)
         mBinding.tvSdkView.setPlayersMuted(true)
         TvAdSdk.setDebug(true)
@@ -71,6 +67,10 @@ class SplashActivity : AppCompatActivity() {
                                 goToMain()
                             }
 
+                            override fun onAdTimeout() {
+                                super.onAdTimeout()
+                                goToMain()
+                            }
                         })
                 }
 

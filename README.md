@@ -41,6 +41,7 @@ maven配置: 项目根目录下settings.gradle
 ## 3. 初始化 SDK
 
 在您的应用程序中的合适位置初始化SeattleSdk广告SDK。
+
 - 在使用SDK前，请让贵司的商务先向我们商务代表申请client_id,client_secret。
 - 获取TOKEN的方法如下：
 
@@ -64,16 +65,22 @@ maven配置: 项目根目录下settings.gradle
       }
 ```
 
-##4. 在合适的布局中增加两种不同类型的View: 
+##4. 在合适的布局中增加两种不同类型的View:
 TvSdkView : 这个View是用于展示Video广告
 TvMobileAdView： 这个是View用于展示Admob的广告(Banner类型)
 
 ```
-   // 视频广告TvSdkView 布局
+   // 视频广告TvSdkView 布局 播放器使用 ExoPlayer
     <com.cloudinfinitegroup.seattle_tv_sdk.ui.TvSdkView
        android:id="@+id/tvSdkView"
        android:layout_width="match_parent"
        android:layout_height="match_parent"/>
+  
+  // 视频广告TvSdkView 布局 使用系统原生 VideoView
+    <com.cloudinfinitegroup.seattle_tv_sdk.ui.TvSdkView2
+       android:id="@+id/tvSdkView"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"/>     
 	   
    // 增加Admob的广告 TvMobileAdView布局，注意：这个不支持Android Tv 
     <com.cloudinfinitegroup.seattle_tv_sdk.ui.TvMobileAdView
@@ -94,7 +101,12 @@ TvMobileAdView： 这个是View用于展示Admob的广告(Banner类型)
      fun startAd(
             adType: TvAdSdk.AdType = TvAdSdk.AdType.SPLASH,
             contentUrl: String = "",
-            repeatMode: Int = RepeatMode.REPEAT_MODE_OFF,
+            tagString: String? = null,
+            dispatchEvent: MyPlayerDispatchEvent? = null,
+            timeout: Long = 10000L,
+            noCache: Boolean = false,
+            label: String? = null,
+            params: HashMap<String, Any> = hashMapOf(),
             listener: AdListener? = null
         )
 	
@@ -118,8 +130,59 @@ TvMobileAdView： 这个是View用于展示Admob的广告(Banner类型)
 	    TvAdSdk.AdType.SECTION 组合广告
 	    TvAdSdk.AdType.BANNER Banner广告
     contentUrl : 视频链接
-    repeatMode:播放模式暂时不需要
     listener:播放监听
+    tagString: Vast 链接 默认不需要填写。会自动获取 
+    timeout: 请求广告超时时间,默认为10秒。防止广告请求异常。
+    noCache：默认为false，表示请求广告时，会先从缓存中获取广告，如果缓存中不存在广告，则请求广告。
+    label：广告统计标签，默认为空。区分广告类型
+    params: 广告统计自定义参数，默认为空。 注意label 和params 是互斥的。
+    listener: 广告事件监听 常用 DefaultAdListener
+
+### TvSdkView2 方法说明
+     注意:这里是使用系统原生的VideoView播放视频，并且没有任何控制器
+     fun startAd(
+            adType: TvAdSdk.AdType = TvAdSdk.AdType.SPLASH,
+            contentUrl: String = "",
+            tagString: String? = null,
+            dispatchEvent: MyPlayerDispatchEvent? = null,
+            timeout: Long = 10000L,
+            noCache: Boolean = false,
+            noTag: Boolean = false,
+            onlyAd: Boolean = false,
+            label: String? = null,
+            params: HashMap<String, Any> = hashMapOf(),
+            listener: AdListener? = null
+        )
+	
+    fun pause() {
+       暂停播放
+    }
+
+    fun resume() {
+      重新播放
+    }
+
+    fun destroy() {
+      播放器消亡
+    }
+
+    fun setPlayersMuted(muted: Boolean) {
+        播放器静音
+    }
+    adType:
+         TvAdSdk.AdType.SPLASH 开屏广告
+	    TvAdSdk.AdType.SECTION 组合广告
+	    TvAdSdk.AdType.BANNER Banner广告
+    contentUrl : 视频链接
+    listener:播放监听
+    tagString: Vast 链接 默认不需要填写。会自动获取
+    timeout: TvSdkView2中为保留字段。暂时无用
+    noCache：默认为false，表示请求广告时，会先从缓存中获取广告，如果缓存中不存在广告，则请求广告。
+    noTag: 是否使用广告标签，默认为false。表示不使用广告标签。直接播放视频
+    onlyAd：默认为false，表示只播放广告不需要填写视频链接 contentUrl
+    label：广告统计标签，默认为空。区分广告类型
+    params: 广告统计自定义参数，默认为空。 注意label 和params 是互斥的。
+    listener: 广告事件监听 常用 DefaultAdListener
 
 ###TvMobileAdView 使用说明
 本View支持两种模式：
@@ -142,6 +205,7 @@ it.focus("video横幅")
 
 2.如果OTT盒子基于Android Tv, 则Admob是无法使用，此时，我们建议图片式Banner广告参考如下方案实现：
 2.1 OTT盒子厂家根据我们提供的链接，设计对应的展示图片，并放置到合适的位置。参考如下实现方式：
+
 ```
   val imageView = ImageView(this@MainActivity)
   imageView.setImageResource(R.drawable.logo_banner)
